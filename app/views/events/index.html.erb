@@ -4,10 +4,18 @@
 	<%@events.each do |e|%>
 	<li>
 		<%= e.name %>
-		<%= link_to "Show",:controller=>"events",:action=>'show',:id=>e %>
-		<%= link_to "Edit",:controller=>"events",:action=>'edit',:id=>e %>
-		<%= link_to "Delete",:controller=>"events",:action=>'destroy',:id=>e %>
+		<%= link_to "Show",event_path(e) %>
+		<%= link_to "Get Xml",event_path(e,:format=>:xml) %>
+		<%= link_to "Get Json",event_path(e,:format=>:json) %>
+		<%= link_to "Edit",edit_event_path(e) %>
+		<%= link_to "Delete",event_path(e),:method=>:delete %>
+		<%#= link_to "Show",:controller=>"events",:action=>'show',:id=>e %>
+		<%#= link_to "Edit",:controller=>"events",:action=>'edit',:id=>e %>
+		<%#= link_to "Delete",:controller=>"events",:action=>'destroy',:id=>e %>
 	</li>
 	<% end %>
 </ul>
-<%= link_to 'New Event', :controller => 'events', :action => 'new' %>
+<%= paginate @events %>
+<%= link_to "Atom feed", events_path(:format => :atom) %>
+
+<%= link_to 'New Event', new_event_path %>
