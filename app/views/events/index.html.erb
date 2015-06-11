@@ -1,20 +1,24 @@
 <h1>Evens erb</h1>
 
-<ul>
+<table class="table">
 	<%@events.each do |e|%>
-	<li>
+	<tr>
+		<td>
 		<%= e.name %>
-		<%= link_to "Show",event_path(e) %>
-		<%= link_to "Get Xml",event_path(e,:format=>:xml) %>
-		<%= link_to "Get Json",event_path(e,:format=>:json) %>
-		<%= link_to "Edit",edit_event_path(e) %>
-		<%= link_to "Delete",event_path(e),:method=>:delete %>
+		</td>
+		<td>
+		<%= link_to "Show",event_path(e),:class=>"btn btn-default" %>
+		<%= link_to "Get Xml",event_path(e,:format=>:xml),:class=>"btn btn-default" %>
+		<%= link_to "Get Json",event_path(e,:format=>:json),:class=>"btn btn-default" %>
+		<%= link_to "Edit",edit_event_path(e),:class=>"btn btn-default" %>
+		<%= link_to "Delete",event_path(e),:method=>:delete,:class=>"btn btn-default" %>
 		<%#= link_to "Show",:controller=>"events",:action=>'show',:id=>e %>
 		<%#= link_to "Edit",:controller=>"events",:action=>'edit',:id=>e %>
 		<%#= link_to "Delete",:controller=>"events",:action=>'destroy',:id=>e %>
-	</li>
+		</td>
+	</tr>
 	<% end %>
-</ul>
+</table>
 <%= paginate @events %>
 <%= link_to "Atom feed", events_path(:format => :atom) %>
 
