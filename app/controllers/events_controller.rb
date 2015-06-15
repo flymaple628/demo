@@ -40,6 +40,7 @@ class EventsController < ApplicationController
 	end
 	#GET /events/edit
 	def edit
+		@event = Event.find(params[:id])
 	end
 	#GET /events/destory/:id
 	def destroy
@@ -49,7 +50,7 @@ class EventsController < ApplicationController
 	end
 	#POST /events/creat
 	def create
-		@event=Event.new(event_params)
+		@event=Event.new(event_params)#下面的自訂函數
 		if @event.save
 			flash[:notice] = "event was successfully created"
 			redirect_to events_path#重新導向
@@ -58,7 +59,7 @@ class EventsController < ApplicationController
 			render :action=>:new
 		end
 	end
-	#POST /events/edit/:id
+	#POST /events/:id/edit/
 	def update
 		if @event.update(event_params)
 			flash[:notice] = "event was successfully updated"
