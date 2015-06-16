@@ -1,0 +1,12 @@
+<ul>
+	<li><%=link_to "new",new_event_attendee_path(@event),:class=>'btn btn-primary' %></li>
+	<% @attendees.each do |attendee|%>
+	<li>
+	<%=attendee.name %>
+	<%=link_to "SHOW",event_attendee_path(@event,attendee),:class=>'btn btn-primary' %>
+	<%=link_to "edit",edit_event_attendee_path(@event,attendee),:class=>'btn btn-primary' %>
+	<%=link_to "delete",event_attendee_path(@event,attendee),:method=>'DELETE',:class=>'btn btn-danger' %>
+
+	</li>
+	<% end %>
+</ul>

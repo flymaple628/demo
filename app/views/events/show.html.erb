@@ -1,3 +1,7 @@
 <h2><%=@event.name%></h2>
 <%= @event.description %>
+<%= @event.category.try(:name) %>
+<% @event.groups.each do |g| %>
+<%= g.name %>
+<% end%>
 <p><%=link_to 'Back to index',events_path %></p>

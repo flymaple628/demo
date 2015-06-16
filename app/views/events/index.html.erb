@@ -8,6 +8,7 @@
 		</td>
 		<td>
 		<%= link_to "Show",event_path(e),:class=>"btn btn-default" %>
+		<%= link_to "ShowAttendee",event_attendees_path(e),:class=>"btn btn-default" %>
 		<%= link_to "Get Xml",event_path(e,:format=>:xml),:class=>"btn btn-default" %>
 		<%= link_to "Get Json",event_path(e,:format=>:json),:class=>"btn btn-default" %>
 		<%= link_to "Edit",edit_event_path(e),:class=>"btn btn-default" %>
