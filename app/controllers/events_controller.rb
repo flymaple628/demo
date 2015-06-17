@@ -99,6 +99,6 @@ class EventsController < ApplicationController
 	#因為在ＲＵＢＹ中要求要送進去裡面的值都要先經過過濾
 	def event_params
 		#要求只用者只可以使用特定的欄位
-		params.require(:event).permit(:name,:description,:category_id,:status,:group_ids=>[])
+		params.require(:event).permit(:name,:description,:category_id,:stauts,:group_ids=>[])
 	end
 end
