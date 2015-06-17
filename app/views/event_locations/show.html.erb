@@ -1,0 +1,8 @@
+<p>location:</p>
+<% if @event.location %>
+<%= @event.location.try(:name)%>
+<%= link_to "edit",edit_event_location_path(@event),:class=>'btn btn-primary'%>
+<%= link_to "delete",event_location_path(@event),:method=>'delete',:class=>'btn btn-danger'%>
+
+<% end %>
+<p><%= link_to "Add location", new_event_location_path(@event) %></p>

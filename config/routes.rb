@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   resources :events do
     resources :attendees,:controller=>'event_attendees'
+    resource :location,:controller=>'event_locations' #lack index
+    collection do
+      get :latest
+
+      post :bulk_update
+    end
   end
   resources :people
 

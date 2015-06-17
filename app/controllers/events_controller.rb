@@ -48,6 +48,10 @@ class EventsController < ApplicationController
 		flash[:notice] = "event was successfully updated"
 		redirect_to events_path
 	end
+	#GET /events/latest
+	def latest
+		@events=Event.order('id desc').limit(3)
+	end
 	#POST /events/creat
 	def create
 		@event=Event.new(event_params)#下面的自訂函數
@@ -68,6 +72,26 @@ class EventsController < ApplicationController
 			render :action=>:edit
 		end
 	end
+	#post /events/bulk_update/
+	def bulk_update
+
+		ids=Array(params[:ids])
+		events=ids.map { |e| Event.find_by_id(e) }.compact
+		if params[:commit]=='published'
+
+		events.each{
+			|e| e.update(:status=>'published')
+		}
+
+		else
+		events.each{
+			|e| e.destroy
+		}
+
+		end
+		redirect_to events_path
+	end
+
 	private
 	def set_event
 		@event = Event.find(params[:id])
@@ -75,6 +99,6 @@ class EventsController < ApplicationController
 	#因為在ＲＵＢＹ中要求要送進去裡面的值都要先經過過濾
 	def event_params
 		#要求只用者只可以使用特定的欄位
-		params.require(:event).permit(:name,:description,:category_id,:group_ids=>[])
+		params.require(:event).permit(:name,:description,:category_id,:status,:group_ids=>[])
 	end
 end

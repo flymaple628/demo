@@ -1,14 +1,18 @@
 <h1>Evens erb</h1>
-
+<%= link_to "Latest",latest_events_path,:class=>"btn btn-default"%>
+<%= form_tag bulk_update_events_path do%>
 <table class="table">
+
 	<%@events.each do |e|%>
 	<tr>
 		<td>
+		<%= check_box_tag "ids[]",e.id,false %>
 		<%= e.name %>
 		</td>
 		<td>
 		<%= link_to "Show",event_path(e),:class=>"btn btn-default" %>
 		<%= link_to "ShowAttendee",event_attendees_path(e),:class=>"btn btn-default" %>
+		<%= link_to 'location', event_location_path(e),:class=>"btn btn-default" %>
 		<%= link_to "Get Xml",event_path(e,:format=>:xml),:class=>"btn btn-default" %>
 		<%= link_to "Get Json",event_path(e,:format=>:json),:class=>"btn btn-default" %>
 		<%= link_to "Edit",edit_event_path(e),:class=>"btn btn-default" %>
@@ -20,7 +24,9 @@
 	</tr>
 	<% end %>
 </table>
+<%=submit_tag  "delete"%>
+<%=submit_tag  "published"%>
+<% end %>
 <%= paginate @events %>
 <%= link_to "Atom feed", events_path(:format => :atom) %>
-
 <%= link_to 'New Event', new_event_path %>
