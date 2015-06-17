@@ -11,6 +11,7 @@
 		</td>
 		<td>
 		<%= link_to "Show",event_path(e),:class=>"btn btn-default" %>
+		<%= link_to "dashboard",dashboard_event_path(e),:class=>"btn btn-default" %>
 		<%= link_to "ShowAttendee",event_attendees_path(e),:class=>"btn btn-default" %>
 		<%= link_to 'location', event_location_path(e),:class=>"btn btn-default" %>
 		<%= link_to "Get Xml",event_path(e,:format=>:xml),:class=>"btn btn-default" %>
